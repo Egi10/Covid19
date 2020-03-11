@@ -2,13 +2,11 @@ package id.buaja.covid19
 
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import com.bumptech.glide.Glide
-
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -16,7 +14,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_maps.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -41,10 +38,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             statusBarColor = Color.TRANSPARENT
         }
-
-        Glide.with(applicationContext)
-            .load("https://covid19.mathdro.id/api/og")
-            .into(ivImage)
     }
 
     /**

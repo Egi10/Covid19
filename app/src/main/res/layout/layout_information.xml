@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvCountry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/semua_negara"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tvTitleConfirmed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvTitleConfirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/confirmed"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/tvConfirmed"
+        app:layout_constraintLeft_toLeftOf="@id/tvConfirmed"
+        app:layout_constraintRight_toRightOf="@id/tvConfirmed"
+        app:layout_constraintTop_toBottomOf="@id/tvCountry" />
+
+    <TextView
+        android:id="@+id/tvConfirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/_11674"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tvLastUpdate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tvRecovered"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleConfirmed" />
+
+    <TextView
+        android:id="@+id/tvTitleRecovered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recovered"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitleConfirmed"
+        app:layout_constraintLeft_toLeftOf="@id/tvRecovered"
+        app:layout_constraintRight_toRightOf="@id/tvRecovered"
+        app:layout_constraintTop_toTopOf="@id/tvTitleConfirmed" />
+
+    <TextView
+        android:id="@+id/tvRecovered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/_11674"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvConfirmed"
+        app:layout_constraintLeft_toRightOf="@id/tvConfirmed"
+        app:layout_constraintRight_toLeftOf="@id/tvDeaths"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleConfirmed" />
+
+    <TextView
+        android:id="@+id/tvTitleDeaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/deaths"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitleConfirmed"
+        app:layout_constraintLeft_toLeftOf="@id/tvDeaths"
+        app:layout_constraintRight_toRightOf="@id/tvDeaths"
+        app:layout_constraintTop_toTopOf="@id/tvTitleConfirmed" />
+
+    <TextView
+        android:id="@+id/tvDeaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_11674"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvConfirmed"
+        app:layout_constraintLeft_toRightOf="@id/tvRecovered"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleConfirmed" />
+
+    <TextView
+        android:id="@+id/tvLastUpdate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/last_update_2020_03_11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvConfirmed" />
+</androidx.constraintlayout.widget.ConstraintLayout>
