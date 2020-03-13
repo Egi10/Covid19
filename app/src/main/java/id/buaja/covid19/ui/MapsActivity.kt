@@ -120,7 +120,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
             tvRecovered.text = parts[1]
             tvDeaths.text = parts[2]
             val input = parts[3]
-            val inputFormat = SimpleDateFormat("ssssssssss", Locale.ENGLISH)
+            val inputFormat = SimpleDateFormat("ssssssssssSSS", Locale.getDefault())
             val myDate = inputFormat.parse(input)
 
             val outputFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
