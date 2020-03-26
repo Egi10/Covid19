@@ -29,7 +29,7 @@ import kotlin.collections.ArrayList
 class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
     private lateinit var mMap: GoogleMap
     private var list: ArrayList<ResponseConfirmed> = ArrayList()
-    private val viewModelMaps: MapsViewModel by viewModel()
+    private var viewModelMaps: MapsViewModel by viewModel()
 
     override fun contentView(): Int {
         return R.layout.activity_maps
