@@ -18,7 +18,6 @@ import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.ui.province.ProvinceActivity
-import id.buaja.covid19.ui.province.ProvinceViewModel
 import id.buaja.covid19.util.LoaderState
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.layout_information.*
@@ -31,7 +30,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
     private lateinit var mMap: GoogleMap
     private var list: ArrayList<ResponseConfirmed> = ArrayList()
     private val viewModelMaps: MapsViewModel by viewModel()
-    
+
     override fun contentView(): Int {
         return R.layout.activity_maps
     }
