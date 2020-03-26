@@ -19,12 +19,10 @@ import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.ui.province.ProvinceActivity
 import id.buaja.covid19.util.LoaderState
+import id.buaja.covid19.util.dateFormat
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.layout_information.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
     private lateinit var mMap: GoogleMap
@@ -101,15 +99,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
         tvConfirmed.text = list[0].confirmed.toString()
         tvRecovered.text = list[0].recovered.toString()
         tvDeaths.text = list[0].deaths.toString()
-        val input = list[0].lastUpdate.toString()
-        val inputFormat = SimpleDateFormat("ssssssssssSSS", Locale.getDefault())
-        val myDate = inputFormat.parse(input)
-
-        val outputFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
-        myDate?.let {
-            val myDateAsString = outputFormat.format(it)
-            tvLastUpdate.text = myDateAsString
-        }
+        val input = list[0].lastUpdate.toString().dateFormat()
+        tvLastUpdate.text = input
     }
 
     override fun onClick(v: View?) {

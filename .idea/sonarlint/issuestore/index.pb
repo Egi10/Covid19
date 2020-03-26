@@ -45,8 +45,6 @@ j
 :app/src/main/java/id/buaja/covid19/ui/maps/MapsActivity.kt,e/b/eb5c1b068cc567d8fa09e59c1549345744e50fc4
 r
 Bapp/src/main/java/id/buaja/covid19/ui/province/ProvinceActivity.kt,4/b/4bcf7ae41a3ed118a26338e1d36fbb996523d29f
-]
--app/src/main/res/layout/activity_province.xml,7/2/72b2d2c4fa105ee59cb6d10039de2fcd4ef8dc6d
 s
 Capp/src/main/java/id/buaja/covid19/ui/province/ProvinceViewModel.kt,8/c/8c342a99dac539f67f682c03d433241190e1bd2f
 Y
@@ -55,3 +53,9 @@ Y
 0app/src/main/java/id/buaja/covid19/di/Modules.kt,b/e/be7eab01f2813a851faee771878efe77434200dd
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
+^
+.app/src/main/res/layout/layout_information.xml,4/4/44541a56b45e052f3781ddb61cda7f0c87c7c97c
+^
+.app/src/main/res/layout-land/activity_maps.xml,c/b/cbfd3d659c044705355e8d7a2e05d4d8c3f6a7ab
+c
+3app/src/main/res/layout-land/layout_information.xml,5/0/50e13ebe58c0aa7466e166eb9e77539a3373376e
