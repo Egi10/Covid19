@@ -54,8 +54,6 @@ Y
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 ^
-.app/src/main/res/layout/layout_information.xml,4/4/44541a56b45e052f3781ddb61cda7f0c87c7c97c
-^
 .app/src/main/res/layout-land/activity_maps.xml,c/b/cbfd3d659c044705355e8d7a2e05d4d8c3f6a7ab
 c
 3app/src/main/res/layout-land/layout_information.xml,5/0/50e13ebe58c0aa7466e166eb9e77539a3373376e

@@ -1,6 +1,5 @@
 package id.buaja.covid19.ui.maps
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.view.View
@@ -20,6 +19,7 @@ import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.ui.province.ProvinceActivity
 import id.buaja.covid19.util.LoaderState
 import id.buaja.covid19.util.dateFormat
+import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.layout_information.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -82,6 +82,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
                 statusBarColor = Color.TRANSPARENT
             }
         }
+
+        ivDaily.setOnClickListener(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -105,7 +107,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.ivDaily) {
-            startActivity(Intent(this, ProvinceActivity::class.java))
+            startActivity(ProvinceActivity::class.java)
         }
     }
 }

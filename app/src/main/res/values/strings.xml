@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Covid19</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="app_name">Indonesia Covid-19</string>
     <string name="last_update_2020_03_11">Last Update: 2020-03-11</string>
     <string name="_11674">11674</string>
     <string name="recovered">Sembuh</string>
     <string name="confirmed">Positif</string>
     <string name="semua_negara">Semua Negara</string>
     <string name="deaths">Meninggal</string>
+    <string name="provinsi">Provinsi</string>
 </resources>
