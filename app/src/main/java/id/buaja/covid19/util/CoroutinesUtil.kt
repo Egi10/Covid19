@@ -8,12 +8,6 @@ package id.buaja.covid19.util
 
 import java.net.ConnectException
 
-/**
- * Copyright 2020 WOWBid Perintis Nusantara, PT.
- *
- * Created By Julsapargi Nursam 3/2/20
- */
-
 suspend fun <T: Any> fetchState(call: suspend () -> ResultState<T>): ResultState<T> {
     return try {
         call.invoke()

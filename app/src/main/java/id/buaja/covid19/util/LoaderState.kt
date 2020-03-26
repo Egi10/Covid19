@@ -6,12 +6,6 @@
 
 package id.buaja.covid19.util
 
-/**
- * Copyright 2020 WOWBid Perintis Nusantara, PT.
- *
- * Created By Julsapargi Nursam 3/2/20
- */
-
 sealed class LoaderState {
     object ShowLoading: LoaderState()
     object HideLoading: LoaderState()
