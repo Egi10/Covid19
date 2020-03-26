@@ -2,7 +2,7 @@ package id.buaja.covid19
 
 import android.app.Application
 import android.content.Context
-import id.buaja.covid19.di.Inject
+import id.buaja.covid19.di.Modules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -22,7 +22,7 @@ class MyApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MyApp)
-            Inject.init()
+            Modules()
         }
     }
 

@@ -1,10 +1,10 @@
-package id.buaja.covid19.ui
+package id.buaja.covid19.ui.province
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.buaja.covid19.network.model.ResponseConfirmed
+import id.buaja.covid19.network.model.ProvinsiResponse
 import id.buaja.covid19.usecase.ConfirmedUseCase
 import id.buaja.covid19.util.LoaderState
 import id.buaja.covid19.util.ResultState
@@ -12,9 +12,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MapsViewModel(private val useCase: ConfirmedUseCase) : ViewModel() {
-    private val _confirmated = MutableLiveData<List<ResponseConfirmed>>()
-    val confirmated: LiveData<List<ResponseConfirmed>> get() = _confirmated
+/**
+ * Created By Julsapargi Nursam 3/26/20
+ */
+ 
+class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
+    private val _province = MutableLiveData<List<ProvinsiResponse>>()
+    val province: LiveData<List<ProvinsiResponse>> get() = _province
 
     private val _state = MutableLiveData<LoaderState>()
     val state: LiveData<LoaderState> get() = _state
@@ -22,16 +26,20 @@ class MapsViewModel(private val useCase: ConfirmedUseCase) : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-    fun getConfirmed() {
+    init {
+        getConfirmed()
+    }
+
+    private fun getConfirmed() {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch(Dispatchers.Main) {
             val response = withContext(Dispatchers.IO) {
-                useCase.getConfirmed()
+                useCase.getProvince()
             }
 
             when (response) {
                 is ResultState.Success -> {
-                    _confirmated.postValue(response.data)
+                    _province.postValue(response.data)
                 }
 
                 is ResultState.Error -> {

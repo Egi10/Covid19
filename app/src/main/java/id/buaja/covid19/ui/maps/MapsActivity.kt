@@ -1,5 +1,6 @@
-package id.buaja.covid19.ui
+package id.buaja.covid19.ui.maps
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.view.View
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.network.model.ResponseConfirmed
+import id.buaja.covid19.ui.province.ProvinceActivity
 import id.buaja.covid19.util.LoaderState
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.layout_information.*
@@ -24,11 +26,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MapsActivity : BaseActivity(), OnMapReadyCallback {
-
+class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
     private lateinit var mMap: GoogleMap
-    private val viewModelMaps: MapsViewModel by viewModel()
     private var list: ArrayList<ResponseConfirmed> = ArrayList()
+    private val viewModelMaps: MapsViewModel by viewModel()
 
     override fun contentView(): Int {
         return R.layout.activity_maps
@@ -70,7 +71,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
         window.apply {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -84,52 +86,35 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
         }
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        list.let {
-            for (i in it.indices) {
-                val location = LatLng(it[i].lat!!.toDouble(), it[i].jsonMemberLong!!.toDouble())
-                val snippet =
-                    "${it[i].confirmed}:${it[i].recovered}:${it[i].deaths}:${it[i].lastUpdate}"
-                val markerOptions = MarkerOptions()
-                    .position(location)
-                    .title(it[i].countryRegion)
-                    .snippet(snippet)
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_with_border))
-                mMap.addMarker(markerOptions)
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-            }
+        val location = LatLng(list[0].lat!!.toDouble(), list[0].jsonMemberLong!!.toDouble())
+        val markerOptions = MarkerOptions()
+            .position(location)
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_with_border))
+        mMap.addMarker(markerOptions)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 3.5f))
+
+        tvCountry.text = list[0].countryRegion
+        tvConfirmed.text = list[0].confirmed.toString()
+        tvRecovered.text = list[0].recovered.toString()
+        tvDeaths.text = list[0].deaths.toString()
+        val input = list[0].lastUpdate.toString()
+        val inputFormat = SimpleDateFormat("ssssssssssSSS", Locale.getDefault())
+        val myDate = inputFormat.parse(input)
+
+        val outputFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
+        myDate?.let {
+            val myDateAsString = outputFormat.format(it)
+            tvLastUpdate.text = myDateAsString
         }
+    }
 
-        googleMap.setOnMarkerClickListener {
-            val split = it.snippet.toString()
-            val parts = split.split(":")
-            tvCountry.text = it.title
-            tvConfirmed.text = parts[0]
-            tvRecovered.text = parts[1]
-            tvDeaths.text = parts[2]
-            val input = parts[3]
-            val inputFormat = SimpleDateFormat("ssssssssssSSS", Locale.getDefault())
-            val myDate = inputFormat.parse(input)
-
-            val outputFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
-            myDate?.let {
-                val myDateAsString = outputFormat.format(it)
-                tvLastUpdate.text = myDateAsString
-            }
-
-            return@setOnMarkerClickListener false
+    override fun onClick(v: View?) {
+        if (v?.id == R.id.ivDaily) {
+            startActivity(Intent(this, ProvinceActivity::class.java))
         }
     }
 }

@@ -10,5 +10,5 @@ import id.buaja.covid19.usecase.ConfirmedUseCase
 import org.koin.dsl.module
 
 fun useCaseModule() = module {
-    single { ConfirmedUseCase(get()) }
+    factory { ConfirmedUseCase(get()) }
 }
