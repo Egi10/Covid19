@@ -30,7 +30,7 @@ class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
         getConfirmed()
     }
 
-    private fun getConfirmed() {
+    fun getConfirmed() {
         _state.value = true
         viewModelScope.launch(Dispatchers.Main) {
             val response = withContext(Dispatchers.IO) {

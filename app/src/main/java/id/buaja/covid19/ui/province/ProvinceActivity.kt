@@ -42,10 +42,11 @@ class ProvinceActivity : BaseActivity() {
     }
 
     override fun initView() {
-        setSupportActionBar(toolbar)
         toolbar.title = "Daftar Provinsi"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        swipeRefresh.setOnRefreshListener {
+            viewModel.getConfirmed()
+        }
 
         adapter = ProvinceAdapter(listProvince)
         recyclerView.layoutManager = LinearLayoutManager(this)

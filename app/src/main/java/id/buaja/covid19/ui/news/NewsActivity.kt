@@ -6,6 +6,7 @@ import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.ui.maps.MapsActivity
 import id.buaja.covid19.util.startActivity
+import kotlinx.android.synthetic.main.toolbar.*
 
 class NewsActivity : BaseActivity() {
     override fun contentView(): Int {
@@ -17,7 +18,7 @@ class NewsActivity : BaseActivity() {
     }
 
     override fun initView() {
-
+        toolbar.title = "Berita Terkini"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
