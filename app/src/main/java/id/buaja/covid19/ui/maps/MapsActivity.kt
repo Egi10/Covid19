@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.network.model.ResponseConfirmed
+import id.buaja.covid19.ui.news.NewsActivity
 import id.buaja.covid19.ui.province.ProvinceActivity
 import id.buaja.covid19.util.LoaderState
 import id.buaja.covid19.util.dateFormat
@@ -84,6 +85,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
         }
 
         ivDaily.setOnClickListener(this)
+        ivNews.setOnClickListener(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -106,8 +108,14 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.ivDaily) {
-            startActivity(ProvinceActivity::class.java)
+        when(v?.id) {
+            R.id.ivDaily -> {
+                startActivity(ProvinceActivity::class.java)
+            }
+
+            R.id.ivNews -> {
+                startActivity(NewsActivity::class.java)
+            }
         }
     }
 }

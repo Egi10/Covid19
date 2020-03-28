@@ -47,13 +47,19 @@ r
 Bapp/src/main/java/id/buaja/covid19/ui/province/ProvinceActivity.kt,4/b/4bcf7ae41a3ed118a26338e1d36fbb996523d29f
 s
 Capp/src/main/java/id/buaja/covid19/ui/province/ProvinceViewModel.kt,8/c/8c342a99dac539f67f682c03d433241190e1bd2f
-Y
-)app/src/main/res/layout/activity_maps.xml,7/7/773a0511f0fbef0bddfce437cffca83a066ef58c
 `
 0app/src/main/java/id/buaja/covid19/di/Modules.kt,b/e/be7eab01f2813a851faee771878efe77434200dd
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-^
-.app/src/main/res/layout-land/activity_maps.xml,c/b/cbfd3d659c044705355e8d7a2e05d4d8c3f6a7ab
 c
 3app/src/main/res/layout-land/layout_information.xml,5/0/50e13ebe58c0aa7466e166eb9e77539a3373376e
+S
+#app/src/main/res/values/strings.xml,d/2/d2281fbb3027de2722081a53408dd77628bf080e
+q
+Aapp/src/main/java/id/buaja/covid19/ui/province/ProvinceAdapter.kt,f/1/f1799bc28f9c4329ede46f395f6b87e65a8a1c72
+e
+5app/src/main/java/id/buaja/covid19/util/DateFormat.kt,1/4/14520ee134b3c1dbfa8ae929674563cc7b131237
+c
+3app/src/main/java/id/buaja/covid19/util/Activity.kt,8/3/8321b31ff0f2ff9ff58a274f4faca0421988fb9a
+j
+:app/src/main/java/id/buaja/covid19/ui/news/NewsActivity.kt,2/6/26db4a92432df735e3dde51de338fe36e78cc900

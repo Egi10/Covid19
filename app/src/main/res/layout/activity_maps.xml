@@ -46,6 +46,16 @@
         app:layout_constraintTop_toTopOf="@id/map" />
 
     <ImageView
+        android:id="@+id/ivNews"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_newspaper"
+        app:layout_constraintLeft_toLeftOf="@id/ivDaily"
+        app:layout_constraintTop_toBottomOf="@id/ivDaily"/>
+
+    <ImageView
         android:id="@+id/ivLoadData"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"

@@ -13,8 +13,7 @@ import kotlinx.android.synthetic.main.item_province.view.*
  */
 
 class ProvinceAdapter(
-    private val data: List<ProvinsiResponse>,
-    private val listener: (ProvinsiResponse) -> Unit
+    private val data: List<ProvinsiResponse>
 ) : RecyclerView.Adapter<ProvinceAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -25,19 +24,15 @@ class ProvinceAdapter(
     override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(data[position], listener)
+        holder.bind(data[position])
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: ProvinsiResponse, listener: (ProvinsiResponse) -> Unit) {
+        fun bind(item: ProvinsiResponse) {
             with(itemView) {
                 tvProvince.text = item.attributes?.provinsi
                 tvConfirmed.text = item.attributes?.kasusPosi.toString()
                 tvRecovered.text = item.attributes?.kasusSemb.toString()
                 tvDeaths.text = item.attributes?.kasusMeni.toString()
-
-                setOnClickListener {
-                    listener(item)
-                }
             }
         }
     }

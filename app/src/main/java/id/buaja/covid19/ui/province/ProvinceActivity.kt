@@ -9,9 +9,9 @@ import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.network.model.ProvinsiResponse
 import id.buaja.covid19.ui.maps.MapsActivity
-import id.buaja.covid19.util.LoaderState
 import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_province.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProvinceActivity : BaseActivity() {
@@ -25,15 +25,7 @@ class ProvinceActivity : BaseActivity() {
 
     override fun initObservable() {
         viewModel.state.observe(this, Observer {
-            when (it) {
-                is LoaderState.ShowLoading -> {
-                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
-                }
-
-                is LoaderState.HideLoading -> {
-                    Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show()
-                }
-            }
+            swipeRefresh.isRefreshing = it
         })
 
         viewModel.province.observe(this, Observer {
@@ -51,12 +43,11 @@ class ProvinceActivity : BaseActivity() {
 
     override fun initView() {
         setSupportActionBar(toolbar)
+        toolbar.title = "Daftar Provinsi"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        adapter = ProvinceAdapter(listProvince) {
-
-        }
+        adapter = ProvinceAdapter(listProvince)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
     }

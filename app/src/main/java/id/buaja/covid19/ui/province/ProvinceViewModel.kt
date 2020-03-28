@@ -20,8 +20,8 @@ class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
     private val _province = MutableLiveData<List<ProvinsiResponse>>()
     val province: LiveData<List<ProvinsiResponse>> get() = _province
 
-    private val _state = MutableLiveData<LoaderState>()
-    val state: LiveData<LoaderState> get() = _state
+    private val _state = MutableLiveData<Boolean>()
+    val state: LiveData<Boolean> get() = _state
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
@@ -31,7 +31,7 @@ class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
     }
 
     private fun getConfirmed() {
-        _state.value = LoaderState.ShowLoading
+        _state.value = true
         viewModelScope.launch(Dispatchers.Main) {
             val response = withContext(Dispatchers.IO) {
                 useCase.getProvince()
@@ -46,7 +46,7 @@ class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
                     _error.postValue(response.error)
                 }
             }
-            _state.value = LoaderState.HideLoading
+            _state.value = false
         }
     }
 }
