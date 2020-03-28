@@ -1,4 +1,4 @@
-package id.buaja.covid19.repository
+package id.buaja.covid19.repository.confirmed
 
 import id.buaja.covid19.network.model.ProvinsiResponse
 import id.buaja.covid19.network.model.ResponseConfirmed

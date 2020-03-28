@@ -6,9 +6,11 @@
 
 package id.buaja.covid19.di
 
-import id.buaja.covid19.usecase.ConfirmedUseCase
+import id.buaja.covid19.usecase.confirmed.ConfirmedUseCase
+import id.buaja.covid19.usecase.news.NewsUseCase
 import org.koin.dsl.module
 
 fun useCaseModule() = module {
     factory { ConfirmedUseCase(get()) }
+    factory { NewsUseCase(get()) }
 }

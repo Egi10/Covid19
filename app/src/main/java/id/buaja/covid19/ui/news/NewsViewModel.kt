@@ -1,23 +1,25 @@
-package id.buaja.covid19.ui.province
+package id.buaja.covid19.ui.news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.buaja.covid19.network.model.ProvinsiResponse
-import id.buaja.covid19.usecase.confirmed.ConfirmedUseCase
+import id.buaja.covid19.network.model.ResponseConfirmed
+import id.buaja.covid19.network.model.news.ArticlesItem
+import id.buaja.covid19.usecase.news.NewsUseCase
+import id.buaja.covid19.util.LoaderState
 import id.buaja.covid19.util.ResultState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * Created By Julsapargi Nursam 3/26/20
+ * Created By Julsapargi Nursam 3/28/20
  */
- 
-class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
-    private val _province = MutableLiveData<List<ProvinsiResponse>>()
-    val province: LiveData<List<ProvinsiResponse>> get() = _province
+
+class NewsViewModel(private val useCase: NewsUseCase): ViewModel() {
+    private val _news = MutableLiveData<List<ArticlesItem>>()
+    val news: LiveData<List<ArticlesItem>> get() = _news
 
     private val _state = MutableLiveData<Boolean>()
     val state: LiveData<Boolean> get() = _state
@@ -26,19 +28,19 @@ class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
     val error: LiveData<String> get() = _error
 
     init {
-        getConfirmed()
+        getNews()
     }
 
-    fun getConfirmed() {
+    fun getNews() {
         _state.value = true
         viewModelScope.launch(Dispatchers.Main) {
             val response = withContext(Dispatchers.IO) {
-                useCase.getProvince()
+                useCase.getNews()
             }
 
             when (response) {
                 is ResultState.Success -> {
-                    _province.postValue(response.data)
+                    _news.postValue(response.data)
                 }
 
                 is ResultState.Error -> {

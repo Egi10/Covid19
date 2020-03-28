@@ -23,10 +23,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField "String", "BASE_URL", "\"https://covid19.mathdro.id/api/\""
+            buildConfigField "String", "API_KEY", "\"a2dfca9812a34b79bdc0bd97829d0dff\""
         }
 
         debug {
             buildConfigField "String", "BASE_URL", "\"https://covid19.mathdro.id/api/\""
+            buildConfigField "String", "API_KEY", "\"a2dfca9812a34b79bdc0bd97829d0dff\""
         }
     }
     compileOptions {
@@ -79,4 +81,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     //Material
     implementation 'com.google.android.material:material:1.1.0'
+    //Custum Tab
+    //noinspection GradleCompatible
+    implementation 'com.android.support:customtabs:23.3.0'
 }
