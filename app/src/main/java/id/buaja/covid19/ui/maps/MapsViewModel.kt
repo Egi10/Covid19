@@ -57,7 +57,7 @@ class MapsViewModel(private val useCase: ConfirmedUseCase, private val timeLineU
 
             when (response) {
                 is ResultState.Success -> {
-                    Log.d("Sukses", response.data!![3].totalCases.toString())
+                    Log.d("Sukses", "${response.data!![3].totalCases.toString()} ${response.data[3].date}")
                 }
 
                 is ResultState.Error -> {

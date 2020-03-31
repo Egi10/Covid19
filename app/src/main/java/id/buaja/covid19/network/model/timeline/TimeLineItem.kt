@@ -3,6 +3,7 @@ package id.buaja.covid19.network.model.timeline
 import com.google.gson.annotations.SerializedName
 
 data class TimeLineItem(
+	val date: String? = null,
 
 	@field:SerializedName("total_cases")
 	val totalCases: Int? = null,

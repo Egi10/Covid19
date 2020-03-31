@@ -37,6 +37,7 @@ class TimeLineUseCase(private val repository: TimeLineRepository) {
                                 val totalRecoveries = get("total_recoveries").asInt
                                 val totalDeaths = get("total_deaths").asInt
                                 val timeLineItem = TimeLineItem(
+                                    date = filter[i].toString(),
                                     totalCases = totalCases,
                                     newDailyCases = newDailyCases,
                                     newDailyDeaths = newDailyDeaths,
