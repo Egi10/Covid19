@@ -5,6 +5,7 @@ import id.buaja.covid19.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiConfig {
@@ -17,6 +18,7 @@ object ApiConfig {
             .baseUrl(BuildConfig.BASE_URL)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
             .client(createOkHttpClient())
             .build()
     }

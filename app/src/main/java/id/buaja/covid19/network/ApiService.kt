@@ -1,11 +1,11 @@
 package id.buaja.covid19.network
 
+import com.google.gson.JsonObject
 import id.buaja.covid19.network.model.ProvinsiResponse
 import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.network.model.news.NewsResponse
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -21,4 +21,9 @@ interface ApiService {
         @Query("apiKey") apiKey: String?,
         @Query("country") country: String?
     ): Response<NewsResponse>
+
+    @GET("https://thevirustracker.com/free-api")
+    suspend fun getTimeLine(
+        @Query("countryTimeline") country: String?
+    ): Response<JsonObject>
 }

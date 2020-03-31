@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
  
 fun viewModelModule() = module {
-    viewModel { MapsViewModel(get()) }
+    viewModel { MapsViewModel(get(), get()) }
     viewModel { ProvinceViewModel(get()) }
     viewModel { NewsViewModel(get()) }
 }
