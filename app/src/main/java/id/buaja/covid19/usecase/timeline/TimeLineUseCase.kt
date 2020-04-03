@@ -1,6 +1,5 @@
 package id.buaja.covid19.usecase.timeline
 
-import com.google.gson.JsonObject
 import id.buaja.covid19.network.model.timeline.TimeLineItem
 import id.buaja.covid19.repository.timeline.TimeLineRepository
 import id.buaja.covid19.util.ResultState

@@ -11,7 +11,7 @@ fun String.dateFormat() : String? {
     val inputFormat = SimpleDateFormat("ssssssssssSSS", Locale.getDefault())
     val myDate = inputFormat.parse(this)
     val locale = Locale("id")
-    val outputFormat = SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm:ss", locale)
+    val outputFormat = SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm aa", locale)
     var dateFormat = ""
     myDate?.let {
         val myDateAsString = outputFormat.format(it)

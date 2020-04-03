@@ -2,6 +2,7 @@ package id.buaja.covid19
 
 import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDex
 import id.buaja.covid19.di.Modules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -31,5 +32,10 @@ class MyApp : Application() {
 
         val context: Context?
             get() = instance
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(base)
     }
 }
