@@ -25,8 +25,9 @@ object ApiConfig {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .pingInterval(30, TimeUnit.SECONDS)
-            .readTimeout(1, TimeUnit.MINUTES)
-            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
             .build()
     }
 }

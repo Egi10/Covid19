@@ -28,12 +28,13 @@ class ConfirmedUseCase(private val repository: ConfirmedRepository) {
         return fetchState {
             val response = repository.getProvinsi()
 
-            when(response.code()) {
-                200 -> {
+            val code = response.code()
+            when {
+                code == 200 -> {
                     ResultState.Success(response.body())
                 }
 
-                503 -> {
+                code >= 500 -> {
                     ResultState.Error("Server Kami Sedang Bermasalah")
                 }
 

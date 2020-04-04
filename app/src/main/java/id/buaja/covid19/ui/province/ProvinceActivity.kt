@@ -2,7 +2,7 @@ package id.buaja.covid19.ui.province
 
 import android.view.KeyEvent
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.buaja.covid19.R
@@ -11,6 +11,7 @@ import id.buaja.covid19.network.model.ProvinsiResponse
 import id.buaja.covid19.ui.maps.MapsActivity
 import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_province.*
+import kotlinx.android.synthetic.main.layout_empty.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,9 +38,7 @@ class ProvinceActivity : BaseActivity() {
             }
         })
 
-        viewModel.error.observe(this, Observer {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-        })
+        viewModel.error.observe(this, error())
     }
 
     override fun initView() {
@@ -68,5 +67,10 @@ class ProvinceActivity : BaseActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    fun error() = Observer<String> {
+        message.visibility = View.VISIBLE
+        tvMessage.text = it
     }
 }
