@@ -30,6 +30,7 @@ class ProvinceActivity : BaseActivity() {
 
         viewModel.province.observe(this, Observer {
             it?.let {
+                toolbar.title = "Data Kasus ${it.size} Provinsi"
                 listProvince.clear()
                 listProvince.addAll(it)
                 adapter.notifyDataSetChanged()
@@ -42,7 +43,7 @@ class ProvinceActivity : BaseActivity() {
     }
 
     override fun initView() {
-        toolbar.title = "Daftar Provinsi"
+        toolbar.title = "Data Kasus"
 
         swipeRefresh.setOnRefreshListener {
             viewModel.getConfirmed()

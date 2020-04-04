@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_margin="@dimen/_10sdp"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvCountry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -20,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitleConfirmed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +33,7 @@
         app:layout_constraintRight_toRightOf="@id/tvConfirmed"
         app:layout_constraintTop_toBottomOf="@id/tvCountry" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvConfirmed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitleConfirmed"
         tools:text="@string/_11674" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitleRecovered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +58,7 @@
         app:layout_constraintRight_toRightOf="@id/tvRecovered"
         app:layout_constraintTop_toBottomOf="@id/tvConfirmed" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvRecovered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitleRecovered"
         tools:text="@string/_11674" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitleDeaths"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,7 +83,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRecovered" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDeaths"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitleDeaths" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvLastUpdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
