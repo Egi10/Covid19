@@ -6,16 +6,31 @@
 
 package id.buaja.covid19.util
 
-import java.net.ConnectException
+import retrofit2.HttpException
+import java.io.IOException
+import java.net.SocketTimeoutException
 
-suspend fun <T: Any> fetchState(call: suspend () -> ResultState<T>): ResultState<T> {
+suspend fun <T : Any> fetchState(call: suspend () -> T): ResultState<T> {
     return try {
-        call.invoke()
-    } catch (e: ConnectException) {
-        ResultState.Error(e.message.toString())
-    } catch (e: Exception) {
-        ResultState.Error(e.message.toString())
+        ResultState.Success(call.invoke())
     } catch (e: Throwable) {
-        ResultState.Error(e.message.toString())
+        when (e) {
+            //No Network
+            is IOException -> {
+                ResultState.Error("No signal")
+            }
+
+            is HttpException -> {
+                ResultState.Error("Not Found")
+            }
+
+            is SocketTimeoutException -> {
+                ResultState.Error("Periksa Jaringan Kamu")
+            }
+
+            else -> {
+                ResultState.Error(e.cause.toString())
+            }
+        }
     }
 }

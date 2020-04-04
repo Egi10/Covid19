@@ -12,17 +12,7 @@ import id.buaja.covid19.util.fetchState
 class NewsUseCase(private val repository: NewsRepository) {
     suspend fun getNews(): ResultState<List<ArticlesItem>> {
         return fetchState {
-            val response = repository.getNews()
-
-            when(response.code()) {
-                200 -> {
-                    ResultState.Success(response.body()?.articles)
-                }
-
-                else -> {
-                    ResultState.Error(response.message())
-                }
-            }
+            repository.getNews().body()?.articles!!
         }
     }
 }

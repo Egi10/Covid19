@@ -15,45 +15,38 @@ class TimeLineUseCase(private val repository: TimeLineRepository) {
         return fetchState {
             val response = repository.getTimeLine()
 
-            when (response.code()) {
-                200 -> {
-                    val responseTimeLine = response.body()?.getAsJsonArray("timelineitems")
-                    responseTimeLine?.let {
-                        val getObjectResponse = it[0].asJsonObject
-                        val listInResponse = getObjectResponse.keySet().toList()
+            val responseTimeLine = response.body()?.getAsJsonArray("timelineitems")
+            responseTimeLine?.let {
+                val getObjectResponse = it[0].asJsonObject
+                val listInResponse = getObjectResponse.keySet().toList()
 
-                        val filter = listInResponse.filter { response ->
-                            response != "stat"
-                        }
-
-                        for (i in filter.indices) {
-                            val responseObject =
-                                getObjectResponse.get(filter[i].toString()).asJsonObject
-                            responseObject?.apply {
-                                val newDailyCases = get("new_daily_cases").asInt
-                                val newDailyDeaths = get("new_daily_deaths").asInt
-                                val totalCases = get("total_cases").asInt
-                                val totalRecoveries = get("total_recoveries").asInt
-                                val totalDeaths = get("total_deaths").asInt
-                                val timeLineItem = TimeLineItem(
-                                    date = filter[i].toString(),
-                                    totalCases = totalCases,
-                                    newDailyCases = newDailyCases,
-                                    newDailyDeaths = newDailyDeaths,
-                                    totalRecoveries = totalRecoveries,
-                                    totalDeaths = totalDeaths
-                                )
-                                list.add(timeLineItem)
-                            }
-                        }
-                    }
-                    ResultState.Success(list)
+                val filter = listInResponse.filter { response ->
+                    response != "stat"
                 }
 
-                else -> {
-                    ResultState.Error(response.message())
+                for (i in filter.indices) {
+                    val responseObject =
+                        getObjectResponse.get(filter[i].toString()).asJsonObject
+                    responseObject?.apply {
+                        val newDailyCases = get("new_daily_cases").asInt
+                        val newDailyDeaths = get("new_daily_deaths").asInt
+                        val totalCases = get("total_cases").asInt
+                        val totalRecoveries = get("total_recoveries").asInt
+                        val totalDeaths = get("total_deaths").asInt
+                        val timeLineItem = TimeLineItem(
+                            date = filter[i].toString(),
+                            totalCases = totalCases,
+                            newDailyCases = newDailyCases,
+                            newDailyDeaths = newDailyDeaths,
+                            totalRecoveries = totalRecoveries,
+                            totalDeaths = totalDeaths
+                        )
+                        list.add(timeLineItem)
+                    }
                 }
             }
+
+            list
         }
     }
 }

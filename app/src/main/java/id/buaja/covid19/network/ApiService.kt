@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("countries/Indonesia/confirmed")
+    @GET("countries/Indonesia/confirmd")
     suspend fun getConfirmed(): Response<List<ResponseConfirmed>>
 
     @GET("https://api.kawalcorona.com/indonesia/provinsi")
