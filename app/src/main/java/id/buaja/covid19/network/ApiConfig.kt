@@ -1,6 +1,5 @@
 package id.buaja.covid19.network
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import id.buaja.covid19.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -16,7 +15,6 @@ object ApiConfig {
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
             .client(createOkHttpClient())
