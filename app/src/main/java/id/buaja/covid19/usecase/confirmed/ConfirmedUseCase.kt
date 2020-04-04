@@ -33,6 +33,10 @@ class ConfirmedUseCase(private val repository: ConfirmedRepository) {
                     ResultState.Success(response.body())
                 }
 
+                503 -> {
+                    ResultState.Error("Server Kami Sedang Bermasalah")
+                }
+
                 else -> {
                     ResultState.Error(response.message())
                 }

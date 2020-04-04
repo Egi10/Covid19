@@ -1,7 +1,9 @@
 package id.buaja.covid19.base
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import kotlinx.android.synthetic.main.toolbar.*
 
 abstract class BaseActivity: AppCompatActivity() {
@@ -19,5 +21,9 @@ abstract class BaseActivity: AppCompatActivity() {
         }
         initObservable()
         initView()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { ViewPumpContextWrapper.wrap(it) })
     }
 }

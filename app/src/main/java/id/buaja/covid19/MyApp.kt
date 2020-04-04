@@ -4,6 +4,9 @@ import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
 import id.buaja.covid19.di.Modules
+import io.github.inflationx.calligraphy3.CalligraphyConfig
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor
+import io.github.inflationx.viewpump.ViewPump
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -18,6 +21,15 @@ class MyApp : Application() {
     override fun onCreate() {
         instance = this
         super.onCreate()
+
+        //Calligraphy
+        ViewPump.init(ViewPump.builder()
+            .addInterceptor(CalligraphyInterceptor(
+                CalligraphyConfig.Builder()
+                    .setDefaultFontPath("fonts/roboto_regular.ttf")
+                    .setFontAttrId(R.attr.fontPath)
+                    .build()))
+            .build())
 
         //Start Koin
         startKoin {
