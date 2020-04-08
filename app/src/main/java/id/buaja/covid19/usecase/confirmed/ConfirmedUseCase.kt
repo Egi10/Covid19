@@ -5,12 +5,13 @@ import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.repository.confirmed.ConfirmedRepository
 import id.buaja.covid19.util.ResultState
 import id.buaja.covid19.util.fetchState
+import retrofit2.Response
 
 
 class ConfirmedUseCase(private val repository: ConfirmedRepository) {
-    suspend fun getConfirmed(): ResultState<List<ResponseConfirmed>> {
+    suspend fun getConfirmed(): ResultState<Response<List<ResponseConfirmed>>> {
         return fetchState {
-            repository.getConfirmed().body()!!
+            repository.getConfirmed()
         }
     }
 

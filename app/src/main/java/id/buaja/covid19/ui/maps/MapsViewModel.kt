@@ -24,9 +24,9 @@ class MapsViewModel(private val useCase: ConfirmedUseCase, private val timeLineU
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-    init {
-        getTimeLine()
-    }
+//    init {
+//        getTimeLine()
+//    }
 
     fun getConfirmed() {
         _state.value = LoaderState.ShowLoading
@@ -37,7 +37,7 @@ class MapsViewModel(private val useCase: ConfirmedUseCase, private val timeLineU
 
             when (response) {
                 is ResultState.Success -> {
-                    _confirmated.postValue(response.data)
+                    _confirmated.postValue(response.data?.body())
                 }
 
                 is ResultState.Error -> {

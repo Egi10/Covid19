@@ -21,7 +21,15 @@ suspend fun <T : Any> fetchState(call: suspend () -> T): ResultState<T> {
             }
 
             is HttpException -> {
-                ResultState.Error("Not Found")
+                when(e.code()) {
+                    404 -> {
+                        ResultState.Error("Not Found")
+                    }
+
+                    else -> {
+                        ResultState.Error("Error")
+                    }
+                }
             }
 
             is SocketTimeoutException -> {
@@ -29,7 +37,7 @@ suspend fun <T : Any> fetchState(call: suspend () -> T): ResultState<T> {
             }
 
             else -> {
-                ResultState.Error(e.cause.toString())
+                ResultState.Error("Disini")
             }
         }
     }
