@@ -37,7 +37,7 @@ class MapsViewModel(private val useCase: ConfirmedUseCase, private val timeLineU
 
             when (response) {
                 is ResultState.Success -> {
-                    _confirmated.postValue(response.data)
+                    _confirmated.postValue(response.data as List<ResponseConfirmed>)
                 }
 
                 is ResultState.Error -> {

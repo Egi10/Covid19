@@ -40,7 +40,7 @@ class NewsViewModel(private val useCase: NewsUseCase): ViewModel() {
 
             when (response) {
                 is ResultState.Success -> {
-                    _news.postValue(response.data)
+                    _news.postValue(response.data as List<ArticlesItem>)
                 }
 
                 is ResultState.Error -> {

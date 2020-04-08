@@ -1,8 +1,8 @@
 package id.buaja.covid19.usecase.news
 
-import id.buaja.covid19.network.model.news.ArticlesItem
 import id.buaja.covid19.repository.news.NewsRepository
 import id.buaja.covid19.util.ResultState
+import id.buaja.covid19.util.fetchError
 import id.buaja.covid19.util.fetchState
 
 /**
@@ -10,7 +10,7 @@ import id.buaja.covid19.util.fetchState
  */
 
 class NewsUseCase(private val repository: NewsRepository) {
-    suspend fun getNews(): ResultState<List<ArticlesItem>> {
+    suspend fun getNews(): ResultState<Any> {
         return fetchState {
             val response = repository.getNews()
 
@@ -20,7 +20,7 @@ class NewsUseCase(private val repository: NewsRepository) {
                 }
 
                 else -> {
-                    ResultState.Error(response.message())
+                    fetchError(response)
                 }
             }
         }
