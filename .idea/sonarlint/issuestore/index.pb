@@ -64,8 +64,6 @@ S
 ^
 .app/src/main/res/layout-land/activity_maps.xml,c/b/cbfd3d659c044705355e8d7a2e05d4d8c3f6a7ab
 R
-"app/src/main/res/values/styles.xml,f/7/f79cc2688e29fcbc286fda14ae07b27c9e83690f
-R
 "app/src/main/res/values/colors.xml,9/6/969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
 u
 Eapp/src/main/java/id/buaja/covid19/network/model/news/ArticlesItem.kt,8/5/853a77c7f802dd77c5caf47340a608464dace80b
@@ -95,8 +93,6 @@ d
 +app/src/main/res/drawable/ic_left_arrow.xml,5/0/50a79206130225f7d0225422ee0b1bbbb7c5f05c
 Y
 )app/src/main/res/layout/activity_news.xml,c/c/cc87928fc1e2de2d49dc2935c3d1c2e10838f213
-U
-%app/src/main/res/layout/item_news.xml,1/a/1aa936cec24594685cb1395a5dd66c0e705810af
 q
 Aapp/src/main/java/id/buaja/covid19/network/model/timeline/Info.kt,6/1/6131f69c7f32a7d3229ae9845b301fdb8981cce7
 „

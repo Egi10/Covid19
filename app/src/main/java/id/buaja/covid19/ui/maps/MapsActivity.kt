@@ -18,6 +18,7 @@ import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.ui.news.NewsActivity
 import id.buaja.covid19.ui.province.ProvinceActivity
+import id.buaja.covid19.ui.statistic.StatisticActivity
 import id.buaja.covid19.util.LoaderState
 import id.buaja.covid19.util.dateFormat
 import id.buaja.covid19.util.startActivity
@@ -86,6 +87,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
 
         ivDaily.setOnClickListener(this)
         ivNews.setOnClickListener(this)
+        ivChart.setOnClickListener(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -115,6 +117,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
 
             R.id.ivNews -> {
                 startActivity(NewsActivity::class.java)
+            }
+
+            R.id.ivChart -> {
+                startActivity(StatisticActivity::class.java)
             }
         }
     }
