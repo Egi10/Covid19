@@ -83,8 +83,7 @@ dependencies {
     //Material
     implementation 'com.google.android.material:material:1.1.0'
     //Custum Tab
-    //noinspection GradleCompatible
-    implementation 'com.android.support:customtabs:23.3.0'
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:1.2.0'
     //Chart
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     //MultiDex
