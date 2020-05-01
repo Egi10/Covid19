@@ -73,7 +73,7 @@ o
 ?app/src/main/java/id/buaja/covid19/network/model/news/Source.kt,5/5/55396c9cf667b22f01503c2c11fd42dfd6bc1f01
 ~
 Napp/src/main/java/id/buaja/covid19/repository/confirmed/ConfirmedRepository.kt,1/2/12e632cc1663934b7c954eaacf52fa28ec712220
-‚
+ï¿½
 Rapp/src/main/java/id/buaja/covid19/repository/confirmed/ConfirmedRepositoryImpl.kt,e/5/e5c5a4d7f8f656786d1765084e5b8bf3347cd1e5
 t
 Dapp/src/main/java/id/buaja/covid19/repository/news/NewsRepository.kt,a/7/a7917f1f5b4834e130091a1dddbcd4e6835721f5
@@ -95,9 +95,9 @@ Y
 )app/src/main/res/layout/activity_news.xml,c/c/cc87928fc1e2de2d49dc2935c3d1c2e10838f213
 q
 Aapp/src/main/java/id/buaja/covid19/network/model/timeline/Info.kt,6/1/6131f69c7f32a7d3229ae9845b301fdb8981cce7
-„
+ï¿½
 Tapp/src/main/java/id/buaja/covid19/network/model/timeline/CountrytimelinedataItem.kt,7/2/7246055fee9dbd45cb6af2d337042cd8c781616d
-€
+ï¿½
 Papp/src/main/java/id/buaja/covid19/repository/timeline/TimeLineRepositoryImpl.kt,e/9/e9843405cf4d1172352b1609f2b7ea9e7e98a786
 y
 Iapp/src/main/java/id/buaja/covid19/network/model/timeline/TimeLineItem.kt,7/9/7963211b704cf988d71db4f5be0d8bc5b668413c
