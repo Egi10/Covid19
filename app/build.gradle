@@ -70,8 +70,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     //Okhttp
     implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
-    //Koin
-    implementation "org.koin:koin-android:$koin_version"
+    // Koin
+    // include koin-android-scope & koin-android
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     //Scalable Size Unit
     implementation 'com.intuit.sdp:sdp-android:1.0.6'

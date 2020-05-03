@@ -5,10 +5,10 @@ import org.koin.core.module.Module
 
 class Modules {
     private val modules: List<Module> = listOf(
-        networkModule(),
-        repositoryModule(),
-        viewModelModule(),
-        useCaseModule()
+        networkModule,
+        repositoryModule,
+        viewModelModule,
+        useCaseModule
     )
 
     init {

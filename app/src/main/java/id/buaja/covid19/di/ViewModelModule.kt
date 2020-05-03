@@ -7,7 +7,7 @@ import id.buaja.covid19.ui.statistic.StatisticViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
  
-fun viewModelModule() = module {
+val viewModelModule = module {
     viewModel { MapsViewModel(get()) }
     viewModel { ProvinceViewModel(get()) }
     viewModel { NewsViewModel(get()) }

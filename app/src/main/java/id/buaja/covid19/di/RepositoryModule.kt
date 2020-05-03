@@ -7,12 +7,10 @@ import id.buaja.covid19.repository.news.NewsRepositoryImpl
 import id.buaja.covid19.repository.timeline.TimeLineRepository
 import id.buaja.covid19.repository.timeline.TimeLineRepositoryImpl
 import org.koin.dsl.module
- 
-fun repositoryModule() = module {
+
+val repositoryModule = module {
     single<ConfirmedRepository> {
-        ConfirmedRepositoryImpl(
-            get()
-        )
+        ConfirmedRepositoryImpl(get())
     }
     single<NewsRepository> {
         NewsRepositoryImpl(get())

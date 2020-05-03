@@ -11,7 +11,7 @@ import id.buaja.covid19.usecase.news.NewsUseCase
 import id.buaja.covid19.usecase.timeline.TimeLineUseCase
 import org.koin.dsl.module
 
-fun useCaseModule() = module {
+val useCaseModule = module {
     factory { ConfirmedUseCase(get()) }
     factory { NewsUseCase(get()) }
     factory { TimeLineUseCase(get()) }
