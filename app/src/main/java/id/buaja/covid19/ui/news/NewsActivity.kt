@@ -7,15 +7,18 @@ import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.network.model.news.ArticlesItem
 import id.buaja.covid19.ui.maps.MapsActivity
+import id.buaja.covid19.util.divider.DividerItemDecorator
 import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class NewsActivity : BaseActivity() {
     private val viewModel: NewsViewModel by viewModel()
@@ -58,6 +61,8 @@ class NewsActivity : BaseActivity() {
             customTabsIntent.launchUrl(this, Uri.parse(it.url))
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
+        val dividerItemDecoration = DividerItemDecorator(ContextCompat.getDrawable(this, R.drawable.divider_line))
+        recyclerView.addItemDecoration(dividerItemDecoration)
         recyclerView.adapter = adapter
     }
 
