@@ -1,4 +1,4 @@
-package id.buaja.covid19.repository.timeline
+package id.buaja.covid19.data.repository.timeline
 
 import com.google.gson.JsonObject
 import id.buaja.covid19.network.ApiService

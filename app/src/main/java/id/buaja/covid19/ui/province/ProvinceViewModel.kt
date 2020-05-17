@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.buaja.covid19.network.model.ProvinsiResponse
-import id.buaja.covid19.usecase.confirmed.ConfirmedUseCase
+import id.buaja.covid19.domain.confirmed.ConfirmedUseCase
 import id.buaja.covid19.util.ResultState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

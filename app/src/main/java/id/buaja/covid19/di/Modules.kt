@@ -8,7 +8,8 @@ class Modules {
         networkModule,
         repositoryModule,
         viewModelModule,
-        useCaseModule
+        useCaseModule,
+        remoteDataSource
     )
 
     init {

@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.network.model.news.ArticlesItem
-import id.buaja.covid19.usecase.news.NewsUseCase
-import id.buaja.covid19.util.LoaderState
+import id.buaja.covid19.domain.news.NewsUseCase
 import id.buaja.covid19.util.ResultState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

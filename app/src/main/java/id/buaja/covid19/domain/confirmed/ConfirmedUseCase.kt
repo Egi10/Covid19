@@ -1,8 +1,7 @@
-package id.buaja.covid19.usecase.confirmed
+package id.buaja.covid19.domain.confirmed
 
 import id.buaja.covid19.network.model.ProvinsiResponse
-import id.buaja.covid19.network.model.ResponseConfirmed
-import id.buaja.covid19.repository.confirmed.ConfirmedRepository
+import id.buaja.covid19.data.repository.confirmed.ConfirmedRepository
 import id.buaja.covid19.util.ResultState
 import id.buaja.covid19.util.fetchError
 import id.buaja.covid19.util.fetchState

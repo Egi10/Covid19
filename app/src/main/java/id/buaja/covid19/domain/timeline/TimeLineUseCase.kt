@@ -1,7 +1,7 @@
-package id.buaja.covid19.usecase.timeline
+package id.buaja.covid19.domain.timeline
 
 import id.buaja.covid19.network.model.timeline.TimeLineItem
-import id.buaja.covid19.repository.timeline.TimeLineRepository
+import id.buaja.covid19.data.repository.timeline.TimeLineRepository
 import id.buaja.covid19.util.ResultState
 import id.buaja.covid19.util.fetchState
 
