@@ -18,7 +18,7 @@ import com.anychart.graphics.vector.Stroke
 import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
 import id.buaja.covid19.ui.maps.MapsActivity
-import id.buaja.covid19.util.LoaderState
+import id.buaja.covid19.util.network.LoaderState
 import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_statistic.*
 import kotlinx.android.synthetic.main.layout_empty.*

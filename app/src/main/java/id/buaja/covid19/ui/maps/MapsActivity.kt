@@ -19,7 +19,7 @@ import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.ui.news.NewsActivity
 import id.buaja.covid19.ui.province.ProvinceActivity
 import id.buaja.covid19.ui.statistic.StatisticActivity
-import id.buaja.covid19.util.LoaderState
+import id.buaja.covid19.util.network.LoaderState
 import id.buaja.covid19.util.dateFormat
 import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_maps.*

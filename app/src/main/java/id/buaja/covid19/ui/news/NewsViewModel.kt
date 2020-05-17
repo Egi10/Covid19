@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.buaja.covid19.network.model.ResponseConfirmed
 import id.buaja.covid19.network.model.news.ArticlesItem
+import id.buaja.covid19.network.model.news.NewsResponse
 import id.buaja.covid19.usecase.news.NewsUseCase
-import id.buaja.covid19.util.LoaderState
-import id.buaja.covid19.util.ResultState
+import id.buaja.covid19.util.network.ResultState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,7 +39,8 @@ class NewsViewModel(private val useCase: NewsUseCase): ViewModel() {
 
             when (response) {
                 is ResultState.Success -> {
-                    _news.postValue(response.data as List<ArticlesItem>)
+                    val newsResponse = response.data as NewsResponse
+                    _news.postValue(newsResponse.articles)
                 }
 
                 is ResultState.Error -> {

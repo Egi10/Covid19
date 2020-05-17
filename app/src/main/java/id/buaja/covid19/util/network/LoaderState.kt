@@ -4,7 +4,7 @@
  * Last modified 3/2/20 2:40 PM
  */
 
-package id.buaja.covid19.util
+package id.buaja.covid19.util.network
 
 sealed class LoaderState {
     object ShowLoading: LoaderState()

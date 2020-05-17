@@ -1,9 +1,9 @@
 package id.buaja.covid19.usecase.news
 
 import id.buaja.covid19.repository.news.NewsRepository
-import id.buaja.covid19.util.ResultState
-import id.buaja.covid19.util.fetchError
-import id.buaja.covid19.util.fetchState
+import id.buaja.covid19.util.network.ResultState
+import id.buaja.covid19.util.network.fetchState
+import id.buaja.covid19.util.network.wrapper
 
 /**
  * Created By Julsapargi Nursam 3/28/20
@@ -12,16 +12,8 @@ import id.buaja.covid19.util.fetchState
 class NewsUseCase(private val repository: NewsRepository) {
     suspend fun getNews(): ResultState<Any> {
         return fetchState {
-            val response = repository.getNews()
-
-            when(response.code()) {
-                200 -> {
-                    ResultState.Success(response.body()?.articles)
-                }
-
-                else -> {
-                    fetchError(response)
-                }
+            wrapper {
+                repository.getNews()
             }
         }
     }

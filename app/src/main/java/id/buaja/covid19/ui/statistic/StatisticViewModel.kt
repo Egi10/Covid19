@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.buaja.covid19.network.model.timeline.TimeLineItem
 import id.buaja.covid19.usecase.timeline.TimeLineUseCase
-import id.buaja.covid19.util.LoaderState
-import id.buaja.covid19.util.ResultState
+import id.buaja.covid19.util.network.LoaderState
+import id.buaja.covid19.util.network.ResultState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

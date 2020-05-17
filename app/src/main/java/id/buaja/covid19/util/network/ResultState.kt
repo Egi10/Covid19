@@ -1,4 +1,4 @@
-package id.buaja.covid19.util
+package id.buaja.covid19.util.network
 
 sealed class ResultState<out T: Any> {
     data class Error(val error: String): ResultState<Nothing>()

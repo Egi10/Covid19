@@ -4,7 +4,7 @@
  * Last modified 3/2/20 2:33 PM
  */
 
-package id.buaja.covid19.util
+package id.buaja.covid19.util.network
 
 import okio.IOException
 import retrofit2.Response
@@ -27,6 +27,14 @@ suspend fun <T : Any> fetchState(call: suspend () -> ResultState<T>): ResultStat
     }
 }
 
+suspend fun <T : Any> wrapper(call: suspend () -> Response<T>): ResultState<T> {
+    return if (call.invoke().isSuccessful) {
+        ResultState.Success(call.invoke().body())
+    } else {
+        fetchError(call.invoke())
+    }
+}
+
 fun <T : Any> fetchError(response: Response<T>): ResultState<T> {
     return when (response.code()) {
         404 -> {
@@ -35,6 +43,10 @@ fun <T : Any> fetchError(response: Response<T>): ResultState<T> {
 
         401 -> {
             ResultState.Error("Auth")
+        }
+
+        in 500..599 -> {
+            ResultState.Error("Server Kami Sedang Bermasalah")
         }
 
         else -> {
