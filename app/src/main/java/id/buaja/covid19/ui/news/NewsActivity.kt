@@ -47,7 +47,7 @@ class NewsActivity : BaseActivity() {
     }
 
     override fun initView() {
-        toolbar.title = "Berita Utama Corona"
+        toolbar.title = getString(R.string.title_news)
 
         swipeRefresh.setOnRefreshListener {
             viewModel.getNews()
