@@ -15,15 +15,15 @@ suspend fun <T : Any> fetchState(call: suspend () -> ResultState<T>): ResultStat
     return try {
         call.invoke()
     } catch (e: IOException) {
-        ResultState.Error("Periksa Jaringan Anda")
+        ResultState.Message("Periksa Jaringan Anda")
     } catch (e: ConnectException) {
-        ResultState.Error(e.message.toString())
+        ResultState.Message(e.message.toString())
     } catch (e: Exception) {
-        ResultState.Error(e.message.toString())
+        ResultState.Message(e.message.toString())
     } catch (e: Throwable) {
-        ResultState.Error(e.message.toString())
+        ResultState.Message(e.message.toString())
     } catch (e: SocketTimeoutException) {
-        ResultState.Error(e.message.toString())
+        ResultState.Message(e.message.toString())
     }
 }
 
