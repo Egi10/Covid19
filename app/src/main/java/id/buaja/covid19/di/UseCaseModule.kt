@@ -6,13 +6,14 @@
 
 package id.buaja.covid19.di
 
-import id.buaja.covid19.usecase.confirmed.ConfirmedUseCase
-import id.buaja.covid19.usecase.news.NewsUseCase
-import id.buaja.covid19.usecase.timeline.TimeLineUseCase
+import id.buaja.covid19.domain.usecase.GetLocationProvinceAndTotalCasesUseCase
+import id.buaja.covid19.domain.usecase.GetProvinceCovidUseCase
+import id.buaja.covid19.domain.usecase.GetNewsUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory { ConfirmedUseCase(get()) }
-    factory { NewsUseCase(get()) }
-    factory { TimeLineUseCase(get()) }
+    factory { GetNewsUseCase(get()) }
+
+    factory { GetProvinceCovidUseCase(get()) }
+    factory { GetLocationProvinceAndTotalCasesUseCase(get()) }
 }

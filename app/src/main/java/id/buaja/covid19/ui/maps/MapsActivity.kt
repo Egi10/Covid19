@@ -15,12 +15,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
-import id.buaja.covid19.network.model.ResponseConfirmed
+import id.buaja.covid19.domain.usecase.model.LocationProvince
 import id.buaja.covid19.ui.news.NewsActivity
 import id.buaja.covid19.ui.province.ProvinceActivity
 import id.buaja.covid19.ui.statistic.StatisticActivity
 import id.buaja.covid19.util.network.LoaderState
-import id.buaja.covid19.util.dateFormat
 import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.layout_information.*
@@ -28,7 +27,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
     private lateinit var mMap: GoogleMap
-    private var list: ArrayList<ResponseConfirmed> = ArrayList()
+    private var list: ArrayList<LocationProvince> = ArrayList()
     private val viewModelMaps: MapsViewModel by viewModel()
 
     override fun contentView(): Int {
@@ -50,7 +49,13 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
 
         viewModelMaps.confirmated.observe(this, Observer {
             it?.let {
-                list.addAll(it)
+                tvCountry.text = "Indonesia"
+                tvConfirmed.text = it.totalConfirmed.toString()
+                tvRecovered.text = it.totalRecovered.toString()
+                tvDeaths.text = it.totalDeaths.toString()
+                tvLastUpdate.text = it.lastUpdate
+
+                list.addAll(it.locationProvince)
                 val mapFragment = supportFragmentManager
                     .findFragmentById(R.id.map) as SupportMapFragment
                 mapFragment.getMapAsync(this)
@@ -94,19 +99,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val location = LatLng(list[0].lat!!.toDouble(), list[0].jsonMemberLong!!.toDouble())
+        val location = LatLng(list[0].lat, list[0].long)
         val markerOptions = MarkerOptions()
             .position(location)
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_with_border))
         mMap.addMarker(markerOptions)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 3.5f))
-
-        tvCountry.text = list[0].countryRegion
-        tvConfirmed.text = list[0].confirmed.toString()
-        tvRecovered.text = list[0].recovered.toString()
-        tvDeaths.text = list[0].deaths.toString()
-        val input = list[0].lastUpdate.toString().dateFormat()
-        tvLastUpdate.text = input
     }
 
     override fun onClick(v: View?) {

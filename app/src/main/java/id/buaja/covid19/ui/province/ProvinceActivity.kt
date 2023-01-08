@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
-import id.buaja.covid19.network.model.ProvinsiResponse
+import id.buaja.covid19.domain.usecase.model.ProvinceCases
 import id.buaja.covid19.ui.maps.MapsActivity
 import id.buaja.covid19.util.startActivity
 import kotlinx.android.synthetic.main.activity_province.*
@@ -18,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProvinceActivity : BaseActivity() {
     private val viewModel: ProvinceViewModel by viewModel()
     private lateinit var adapter: ProvinceAdapter
-    private val listProvince: MutableList<ProvinsiResponse> = mutableListOf()
+    private val listProvince: MutableList<ProvinceCases> = mutableListOf()
 
     override fun contentView(): Int {
         return R.layout.activity_province
@@ -31,9 +31,10 @@ class ProvinceActivity : BaseActivity() {
 
         viewModel.province.observe(this, Observer {
             it?.let {
-                toolbar.title = "Data Kasus ${it.size} Provinsi"
+                toolbar.title = "Data Kasus ${it.provinceCases.size} Provinsi"
+                toolbar.subtitle = "Update Terakhir ${it.lastUpdate}"
                 listProvince.clear()
-                listProvince.addAll(it)
+                listProvince.addAll(it.provinceCases)
                 adapter.notifyDataSetChanged()
             }
         })

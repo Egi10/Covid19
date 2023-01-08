@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.buaja.covid19.R
-import id.buaja.covid19.network.model.news.ArticlesItem
+import id.buaja.covid19.domain.usecase.model.News
 import id.buaja.covid19.util.dateFormatUtc
 import id.buaja.covid19.util.loadImage
 import kotlinx.android.synthetic.main.item_news.view.*
@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.item_news.view.*
 
 
 class NewsAdapter(
-    private val data: List<ArticlesItem>,
-    private val listener: (ArticlesItem) -> Unit
+    private val data: List<News>,
+    private val listener: (News) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -67,12 +67,12 @@ class NewsAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: ArticlesItem, listener: (ArticlesItem) -> Unit) {
+        fun bind(item: News, listener: (News) -> Unit) {
             with(itemView) {
-                ivImage.loadImage(item.urlToImage.toString())
+                ivImage.loadImage(item.image)
                 tvTitle.text = item.title
-                tvSourceName.text = item.source?.name
-                tvPublishedAt.text = item.publishedAt?.dateFormatUtc()
+                tvSourceName.text = item.name
+                tvPublishedAt.text = item.publishedAt.dateFormatUtc()
 
                 setOnClickListener {
                     listener(item)
@@ -82,12 +82,12 @@ class NewsAdapter(
     }
 
     class ViewHolderRing(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: ArticlesItem, listener: (ArticlesItem) -> Unit) {
+        fun bind(item: News, listener: (News) -> Unit) {
             with(itemView) {
-                ivImage.loadImage(item.urlToImage.toString())
+                ivImage.loadImage(item.image)
                 tvTitle.text = item.title
-                tvSourceName.text = item.source?.name
-                tvPublishedAt.text = item.publishedAt?.dateFormatUtc()
+                tvSourceName.text = item.name
+                tvPublishedAt.text = item.publishedAt.dateFormatUtc()
 
                 setOnClickListener {
                     listener(item)

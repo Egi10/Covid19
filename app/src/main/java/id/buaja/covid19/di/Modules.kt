@@ -6,9 +6,11 @@ import org.koin.core.module.Module
 class Modules {
     private val modules: List<Module> = listOf(
         networkModule,
+        dataSourceModule,
         repositoryModule,
         viewModelModule,
-        useCaseModule
+        useCaseModule,
+        dispatcherModule
     )
 
     init {

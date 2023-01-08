@@ -10,7 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.buaja.covid19.R
 import id.buaja.covid19.base.BaseActivity
-import id.buaja.covid19.network.model.news.ArticlesItem
+import id.buaja.covid19.data.source.response.news.ArticlesItem
+import id.buaja.covid19.domain.usecase.model.News
 import id.buaja.covid19.ui.maps.MapsActivity
 import id.buaja.covid19.util.divider.DividerItemDecorator
 import id.buaja.covid19.util.startActivity
@@ -21,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsActivity : BaseActivity() {
     private val viewModel: NewsViewModel by viewModel()
-    private val listNews: MutableList<ArticlesItem> = mutableListOf()
+    private val listNews: MutableList<News> = mutableListOf()
     private lateinit var adapter: NewsAdapter
 
     override fun contentView(): Int {

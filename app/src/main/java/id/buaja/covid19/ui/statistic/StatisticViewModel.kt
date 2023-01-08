@@ -4,19 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.buaja.covid19.network.model.timeline.TimeLineItem
-import id.buaja.covid19.usecase.timeline.TimeLineUseCase
+import id.buaja.covid19.ui.statistic.model.TimeLineItem
 import id.buaja.covid19.util.network.LoaderState
-import id.buaja.covid19.util.network.ResultState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * Created By Julsapargi Nursam 4/15/20
  */
 
-class StatisticViewModel(private val timeLineUseCase: TimeLineUseCase) : ViewModel() {
+class StatisticViewModel() : ViewModel() {
     private val _statistic = MutableLiveData<List<TimeLineItem>>()
     val statistic: LiveData<List<TimeLineItem>> get() = _statistic
 
@@ -31,22 +27,9 @@ class StatisticViewModel(private val timeLineUseCase: TimeLineUseCase) : ViewMod
     }
 
     private fun getTimeLine() {
-        _state.value = LoaderState.ShowLoading
-        viewModelScope.launch(Dispatchers.Main) {
-            val response = withContext(Dispatchers.IO) {
-                timeLineUseCase.getTimeLine()
-            }
-
-            when (response) {
-                is ResultState.Success -> {
-                    _statistic.postValue(response.data)
-                }
-
-                is ResultState.Error -> {
-                    _error.postValue(response.error)
-                }
-            }
-            _state.value = LoaderState.HideLoading
+        _state.value = LoaderState.HideLoading
+        viewModelScope.launch() {
+            _error.value = "Kami mengalami masalah untuk Sumber Data, jadi untuk sementara feature ini tidak bisa diakses"
         }
     }
 }

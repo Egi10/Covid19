@@ -1,21 +1,17 @@
 package id.buaja.covid19.di
 
-import id.buaja.covid19.repository.confirmed.ConfirmedRepository
-import id.buaja.covid19.repository.confirmed.ConfirmedRepositoryImpl
-import id.buaja.covid19.repository.news.NewsRepository
-import id.buaja.covid19.repository.news.NewsRepositoryImpl
-import id.buaja.covid19.repository.timeline.TimeLineRepository
-import id.buaja.covid19.repository.timeline.TimeLineRepositoryImpl
+import id.buaja.covid19.domain.repository.CovidRepository
+import id.buaja.covid19.data.repository.CovidRepositoryImpl
+import id.buaja.covid19.domain.repository.NewsRepository
+import id.buaja.covid19.data.repository.NewsRepositoryImpl
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<ConfirmedRepository> {
-        ConfirmedRepositoryImpl(get())
+    single<CovidRepository> {
+        CovidRepositoryImpl(get(), get(named(CovidDispatchers.IO)))
     }
     single<NewsRepository> {
-        NewsRepositoryImpl(get())
-    }
-    single<TimeLineRepository> {
-        TimeLineRepositoryImpl(get())
+        NewsRepositoryImpl(get(), get(named(CovidDispatchers.IO)))
     }
 }

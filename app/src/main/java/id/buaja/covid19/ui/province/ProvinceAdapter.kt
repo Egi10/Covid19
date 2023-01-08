@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.buaja.covid19.R
-import id.buaja.covid19.network.model.ProvinsiResponse
+import id.buaja.covid19.domain.usecase.model.ProvinceCases
 import kotlinx.android.synthetic.main.item_province.view.*
 
 /**
@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_province.view.*
  */
 
 class ProvinceAdapter(
-    private val data: List<ProvinsiResponse>
+    private val data: List<ProvinceCases>
 ) : RecyclerView.Adapter<ProvinceAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -27,12 +27,12 @@ class ProvinceAdapter(
         holder.bind(data[position])
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: ProvinsiResponse) {
+        fun bind(item: ProvinceCases) {
             with(itemView) {
-                tvProvince.text = item.attributes?.provinsi
-                tvConfirmed.text = item.attributes?.kasusPosi.toString()
-                tvRecovered.text = item.attributes?.kasusSemb.toString()
-                tvDeaths.text = item.attributes?.kasusMeni.toString()
+                tvProvince.text = item.name
+                tvConfirmed.text = item.totalPositiveCases.toString()
+                tvRecovered.text = item.totalCasesRecovery.toString()
+                tvDeaths.text = item.totalDeathCases.toString()
             }
         }
     }

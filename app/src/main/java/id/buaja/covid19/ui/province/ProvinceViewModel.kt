@@ -4,20 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.buaja.covid19.network.model.ProvinsiResponse
-import id.buaja.covid19.usecase.confirmed.ConfirmedUseCase
+import id.buaja.covid19.domain.usecase.GetProvinceCovidUseCase
+import id.buaja.covid19.domain.usecase.model.ProvinceCovid
 import id.buaja.covid19.util.network.ResultState
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * Created By Julsapargi Nursam 3/26/20
  */
- 
-class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
-    private val _province = MutableLiveData<List<ProvinsiResponse>>()
-    val province: LiveData<List<ProvinsiResponse>> get() = _province
+
+class ProvinceViewModel(
+    private val getProvinceCovidUseCase: GetProvinceCovidUseCase
+) : ViewModel() {
+    private val _province = MutableLiveData<ProvinceCovid>()
+    val province: LiveData<ProvinceCovid> get() = _province
 
     private val _state = MutableLiveData<Boolean>()
     val state: LiveData<Boolean> get() = _state
@@ -31,21 +32,24 @@ class ProvinceViewModel(private val useCase: ConfirmedUseCase): ViewModel() {
 
     fun getConfirmed() {
         _state.value = true
-        viewModelScope.launch(Dispatchers.Main) {
-            val response = withContext(Dispatchers.IO) {
-                useCase.getProvince()
-            }
+        viewModelScope.launch() {
+            getProvinceCovidUseCase.invoke()
+                .collectLatest {
+                    when (it) {
+                        is ResultState.Success -> {
+                            _province.postValue(it.data)
+                        }
 
-            when (response) {
-                is ResultState.Success -> {
-                    _province.postValue(response.data)
-                }
+                        is ResultState.Error -> {
+                            _error.postValue(it.error)
+                        }
 
-                is ResultState.Error -> {
-                    _error.postValue(response.error)
+                        is ResultState.Message -> {
+                            _error.postValue(it.message)
+                        }
+                    }
+                    _state.value = false
                 }
-            }
-            _state.value = false
         }
     }
 }

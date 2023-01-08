@@ -6,11 +6,19 @@
 
 package id.buaja.covid19.util.network
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import okio.IOException
 import retrofit2.Response
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
+fun <T> Flow<T>.asResult(): Flow<ResultState<T>> {
+    return this
+        .map<T, ResultState<T>> {
+            ResultState.Success(it)
+        }
+}
 suspend fun <T : Any> fetchState(call: suspend () -> ResultState<T>): ResultState<T> {
     return try {
         call.invoke()
@@ -29,7 +37,11 @@ suspend fun <T : Any> fetchState(call: suspend () -> ResultState<T>): ResultStat
 
 suspend fun <T : Any> wrapper(call: suspend () -> Response<T>): ResultState<T> {
     return if (call.invoke().isSuccessful) {
-        ResultState.Success(call.invoke().body())
+        call.invoke().body()?.let {
+            ResultState.Success(it)
+        } ?: run {
+            ResultState.Message("Data Null")
+        }
     } else {
         fetchError(call.invoke())
     }

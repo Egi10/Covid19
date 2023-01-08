@@ -11,5 +11,5 @@ val viewModelModule = module {
     viewModel { MapsViewModel(get()) }
     viewModel { ProvinceViewModel(get()) }
     viewModel { NewsViewModel(get()) }
-    viewModel { StatisticViewModel(get()) }
+    viewModel { StatisticViewModel() }
 }
