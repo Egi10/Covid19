@@ -44,10 +44,6 @@ class NewsViewModel(
                         is ResultState.Error -> {
                             _error.postValue(it.error)
                         }
-
-                        is ResultState.Message -> {
-                            _error.postValue(it.message)
-                        }
                     }
                     _state.value = false
                 }

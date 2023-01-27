@@ -8,4 +8,7 @@
     <string name="deaths">Meninggal</string>
     <string name="provinsi">Provinsi</string>
     <string name="title_news">Berita Utama Corona</string>
+    <string name="total_province">Data Kasus %s Provinsi</string>
+    <string name="last_update">Update Terakhir %s</string>
+    <string name="empty">Tidak Ada Data Yang Ditampilkan</string>
 </resources>

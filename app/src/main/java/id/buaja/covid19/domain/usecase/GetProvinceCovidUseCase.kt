@@ -10,6 +10,7 @@ class GetProvinceCovidUseCase(
     private val confirmedRepository: CovidRepository
 ) {
     operator fun invoke(): Flow<ResultState<ProvinceCovid>> {
-        return confirmedRepository.getProvinceCovid().asResult()
+        return confirmedRepository.getProvinceCovid()
+            .asResult()
     }
 }
