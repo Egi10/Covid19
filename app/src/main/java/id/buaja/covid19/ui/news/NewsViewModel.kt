@@ -1,14 +1,14 @@
 package id.buaja.covid19.ui.news
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.buaja.covid19.domain.usecase.GetNewsUseCase
-import id.buaja.covid19.domain.usecase.model.News
+import id.buaja.covid19.ui.news.model.NewsUiState
 import id.buaja.covid19.util.network.ResultState
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
 /**
  * Created By Julsapargi Nursam 3/28/20
@@ -17,36 +17,24 @@ import kotlinx.coroutines.launch
 class NewsViewModel(
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
-    private val _news = MutableLiveData<List<News>>()
-    val news: LiveData<List<News>> get() = _news
 
-    private val _state = MutableLiveData<Boolean>()
-    val state: LiveData<Boolean> get() = _state
-
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
-
-    init {
-        getNews()
-    }
-
-    fun getNews() {
-        _state.value = true
-        viewModelScope.launch {
-            getNewsUseCase.invoke()
-                .collectLatest {
-                    when (it) {
-                        is ResultState.Success -> {
-                            val newsResponse = it.data
-                            _news.postValue(newsResponse)
-                        }
-
-                        is ResultState.Error -> {
-                            _error.postValue(it.error)
-                        }
-                    }
-                    _state.value = false
+    val uiState: StateFlow<NewsUiState> = getNewsUseCase.invoke().map {
+        when(it) {
+            is ResultState.Success -> {
+                if (it.data.isEmpty()) {
+                    NewsUiState.Empty
+                } else {
+                    NewsUiState.Success(it.data)
                 }
+            }
+
+            is ResultState.Error -> {
+                NewsUiState.Error(it.error)
+            }
         }
-    }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = NewsUiState.Loading
+    )
 }
